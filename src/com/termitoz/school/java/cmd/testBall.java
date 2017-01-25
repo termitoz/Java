@@ -27,60 +27,68 @@ public class testBall {
 
     public static void main(String[] args) {
 
-        Ball[] balls = new Ball[(int) args.length / ARGS_NUM];
+        if (args.length % 2 != 0) {
 
-        if (args.length != 0) {
-            if (args[0].equals("-h") | args[0].equals("-help")) {
+            System.out.println("Error: incorrect quantity of parameters");
 
-                viewHelpMessage();
+        } else {
 
-            } else {
+            Ball[] balls = new Ball[(int) args.length / ARGS_NUM];
 
-                int n = 0;
+            if (args.length != 0) {
+                if (args[0].equals("-h") | args[0].equals("-help")) {
 
-                for (int i = 0; i < args.length; i += 4) {
+                    viewHelpMessage();
 
-                    if (!args[i].equals("-n") & !args[i].equals("-r")) {
+                } else {
 
-                        //  viewErrorMessage();
-                        balls[n] = new Ball("Error", 0.0f);
-                        n++;
+                    int n = 0;
+
+                    for (int i = 0; i < args.length; i += 4) {
+
+                        if (!args[i].equals("-n") & !args[i].equals("-r")) {
+
+                            //  viewErrorMessage();
+                            balls[n] = new Ball("Error", 0.0f);
+                            n++;
+
+                        }
+
+                        if (args[i].equals("-n")) {
+
+                            balls[n] = new Ball(args[i + 1], Float.valueOf(args[i + 3]));
+                            n++;
+
+                        }
+
+                        if (args[i].equals("-r")) {
+
+                            balls[n] = new Ball(args[i + 3], Float.valueOf(args[i + 1]));
+                            n++;
+
+                        }
 
                     }
 
-                    if (args[i].equals("-n")) {
+                    System.out.println("============================================");
 
-                        balls[n] = new Ball(args[i + 1], Float.valueOf(args[i + 3]));
-                        n++;
+                    for (int i = 0; i < balls.length; i++) {
 
+                        if (balls[i].getName().equals("Error")) {
+
+                            System.out.println("Error: incorrect sequence of parameters.");
+
+                        } else {
+
+                            System.out.println(balls[i].getName() + " with radius " + balls[i].getR());
+                        }
                     }
 
-                    if (args[i].equals("-r")) {
-
-                        balls[n] = new Ball(args[i + 3], Float.valueOf(args[i + 1]));
-                        n++;
-
-                    }
+                    System.out.println("============================================");
 
                 }
-
-                System.out.println("============================================");
-
-                for (int i = 0; i < balls.length; i++) {
-
-                    if (balls[i].getName().equals("Error")) {
-
-                        System.out.println("Error: incorrect sequence of parameters.");
-
-                    } else {
-
-                        System.out.println(balls[i].getName() + " with radius " + balls[i].getR());
-                    }
-                }
-
-                System.out.println("============================================");
-
             }
+
         }
 
     }
