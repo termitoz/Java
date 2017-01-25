@@ -69,10 +69,9 @@ public class testBall {
 
                 }
 
-                System.out.println("==========================");
-
                 if (allOK) {
 
+                    System.out.println("============================================");
                     for (int i = 0; i < balls.length; i++) {
 
                         System.out.println(balls[i].getName() + " with radius " + balls[i].getR());
@@ -80,7 +79,7 @@ public class testBall {
                     }
                 }
 
-                System.out.println("==========================");
+                System.out.println("============================================");
 
             }
 
