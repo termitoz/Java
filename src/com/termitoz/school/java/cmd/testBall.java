@@ -9,7 +9,7 @@ public class testBall {
 
     public static void viewErrorMessage() {
 
-        System.out.println("incorrect sequence of parameters.");
+        System.out.println("Incorrect sequence of parameters.");
         System.out.println("Type -h to view help message.");
 
     }
@@ -30,7 +30,6 @@ public class testBall {
         Ball[] balls = new Ball[(int) args.length / ARGS_NUM];
 
         if (args.length != 0) {
-
             if (args[0].equals("-h") | args[0].equals("-help")) {
 
                 viewHelpMessage();
@@ -38,16 +37,14 @@ public class testBall {
             } else {
 
                 int n = 0;
-                boolean allOK = false;
 
                 for (int i = 0; i < args.length; i += 4) {
 
                     if (!args[i].equals("-n") & !args[i].equals("-r")) {
 
-                        viewErrorMessage();
+                        //  viewErrorMessage();
+                        balls[n] = new Ball("Error", 0.0f);
                         n++;
-                        allOK = false;
-                        break;
 
                     }
 
@@ -55,7 +52,6 @@ public class testBall {
 
                         balls[n] = new Ball(args[i + 1], Float.valueOf(args[i + 3]));
                         n++;
-                        allOK = true;
 
                     }
 
@@ -63,26 +59,28 @@ public class testBall {
 
                         balls[n] = new Ball(args[i + 3], Float.valueOf(args[i + 1]));
                         n++;
-                        allOK = true;
 
                     }
 
                 }
 
-                if (allOK) {
+                System.out.println("============================================");
 
-                    System.out.println("============================================");
-                    for (int i = 0; i < balls.length; i++) {
+                for (int i = 0; i < balls.length; i++) {
+
+                    if (balls[i].getName().equals("Error")) {
+
+                        System.out.println("Error: incorrect sequence of parameters.");
+
+                    } else {
 
                         System.out.println(balls[i].getName() + " with radius " + balls[i].getR());
-
                     }
                 }
 
                 System.out.println("============================================");
 
             }
-
         }
 
     }
